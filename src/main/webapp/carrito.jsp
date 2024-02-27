@@ -29,7 +29,7 @@
             <%
                 List<Alimento> alimentos = (List<Alimento>) session.getAttribute("alimentos");
                 Map<Integer, Integer> carrito = (Map<Integer, Integer>) session.getAttribute("carrito");
-
+                float totalCarrito = 0;
                 if (carrito != null && !carrito.isEmpty() && alimentos != null) {
                     for (Map.Entry<Integer, Integer> entry : carrito.entrySet()) {
                         Integer codigoItem = entry.getKey();
@@ -37,6 +37,7 @@
 
                         for (Alimento alimento : alimentos) {
                             if (alimento.getCodigo() == codigoItem) {
+                                totalCarrito += cantidad * alimento.getPrecio();
             %>
                                 <tr>
                                     <td><%= alimento.getCodigo() %></td>
@@ -65,11 +66,6 @@
             <input type="submit" value="Volver">
         </form><br>
         
-        <form action="">
-            <input type="submit" value="Pagar">
-        </form>
-        
-        
-
+        <button onclick="alert('Has pagado: <%= totalCarrito %> €')">Pagar</button>
     </body>
 </html>
