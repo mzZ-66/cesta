@@ -13,12 +13,20 @@ public class Alimento {
     private String marca;
     private String descripcion;
     private float precio;
+    private  Tipo tipo; // añado el tipo al modelo (antes no lo tenía en el modelo pero si en la BD)
+    private int stock;
+
+    public enum Tipo {
+        NORMAL, DIETETICO, ECOLOGICO
+    }
     
-    public Alimento(int codigo, String marca, String descripcion, float precio) {
+    public Alimento(int codigo, String marca, String descripcion, float precio, Tipo tipo, int stock) {
         this.codigo = codigo;
         this.marca = marca;
         this.descripcion = descripcion;
         this.precio = precio;
+        this.tipo = tipo;
+        this.stock = stock;
     }
 
     public int getCodigo() {
@@ -49,8 +57,29 @@ public class Alimento {
         this.precio = precio;
     }
 
+    public Tipo getTipo() {
+        return tipo;
+    }
+    public void setTipo(Tipo tipo) {
+        this.tipo = tipo;
+    }
+
+    public int getStock() {
+        return stock;
+    }
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+
     @Override
     public String toString() {
-        return "Alimento{" + "codigo=" + codigo + ", marca=" + marca + ", descripcion=" + descripcion + ", precio=" + precio + '}';
+        return "Alimento{" +
+                "codigo=" + codigo +
+                ", marca='" + marca + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", precio=" + precio +
+                ", tipo=" + tipo +
+                ", stock=" + stock +
+                '}';
     }
 }

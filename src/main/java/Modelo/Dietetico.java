@@ -11,8 +11,8 @@ package Modelo;
 public class Dietetico extends Alimento {
     private int nCalorias;
 
-    public Dietetico(int codigo, String marca, String descripcion, float precio, int nCalorias) {
-        super(codigo, marca, descripcion, precio);
+    public Dietetico(int codigo, String marca, String descripcion, float precio, Tipo tipo, int stock, int nCalorias) {
+        super(codigo, marca, descripcion, precio, tipo, stock);
         this.nCalorias = nCalorias;
     }
 

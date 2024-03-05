@@ -48,7 +48,7 @@
                                     <td><%= cantidad * alimento.getPrecio() %></td>
                                 </tr>
             <%
-                                break; // Salir del bucle interior después de encontrar el elemento
+                                break;
                             }
                         }
                     }
@@ -65,7 +65,9 @@
         <form action="vista.jsp">
             <input type="submit" value="Volver">
         </form><br>
-        
-        <button onclick="alert('Has pagado: <%= totalCarrito %> €')">Pagar</button>
+
+        <form action="sv_pagar" method="post">
+            <input type="submit" value="Pagar">
+        </form><br>
     </body>
 </html>

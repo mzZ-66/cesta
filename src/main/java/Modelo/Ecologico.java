@@ -11,8 +11,8 @@ package Modelo;
 public class Ecologico extends Alimento {
     private String lugarProcedencia;
 
-    public Ecologico(int codigo, String marca, String descripcion, float precio, String lugarProcedencia) {
-        super(codigo, marca, descripcion, precio);
+    public Ecologico(int codigo, String marca, String descripcion, float precio, Tipo tipo, int stock, String lugarProcedencia) {
+        super(codigo, marca, descripcion, precio, tipo, stock);
         this.lugarProcedencia = lugarProcedencia;
     }
 

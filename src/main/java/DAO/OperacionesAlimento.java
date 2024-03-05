@@ -33,20 +33,21 @@ public class OperacionesAlimento {
             String marca = resultSet.getString("marca");
             String descripcion = resultSet.getString("descripcion");
             float precio = resultSet.getFloat("precio");
-            String tipo = resultSet.getString("tipo");
+            Alimento.Tipo tipo = Alimento.Tipo.valueOf(resultSet.getString("tipo")); // aqui he cambiado de string al enum tipo
+            int stock = resultSet.getInt("stock");
 
             Alimento alimento;
             switch (tipo) {
-                case "DIETETICO":
+                case DIETETICO:
                     int nCalorias = resultSet.getInt("nCalorias");
-                    alimento = new Dietetico(codigo, marca, descripcion, precio, nCalorias);
+                    alimento = new Dietetico(codigo, marca, descripcion, precio, tipo, stock, nCalorias);
                     break;
-                case "ECOLOGICO":
+                case ECOLOGICO:
                     String lugarProcedencia = resultSet.getString("lugarProcedencia");
-                    alimento = new Ecologico(codigo, marca, descripcion, precio, lugarProcedencia);
+                    alimento = new Ecologico(codigo, marca, descripcion, precio, tipo, stock, lugarProcedencia);
                     break;
                 default:
-                    alimento = new Alimento(codigo, marca, descripcion, precio);
+                    alimento = new Alimento(codigo, marca, descripcion, precio, tipo, stock);
                     break;
             }
 
@@ -59,7 +60,16 @@ public class OperacionesAlimento {
 
         return alimentos;
     }
-    
+
+    public void reducirStock(int codigo, int cantidad) throws SQLException {
+        String query = "UPDATE alimento SET stock = stock - ? WHERE codigo = ?";
+        PreparedStatement statement = conexion.prepareStatement(query);
+        statement.setInt(1, cantidad);
+        statement.setInt(2, codigo);
+        statement.executeUpdate();
+        statement.close();
+    }
+
 //    public void test() throws SQLException {
 //        String query = "INSERT INTO alimento (codigo, marca, descripcion, precio) VALUES (1, 'MarcaA', 'DescripciónA', 10.50)";
 //        conexion.createStatement().executeUpdate(query);

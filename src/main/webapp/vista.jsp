@@ -25,6 +25,7 @@
                     <th>Precio</th>
                     <th>Tipo</th>
                     <th>Detalles Extra</th>
+                    <th>Stock</th>
                 </tr>
                 <% 
                     List<Alimento> alimentos = (List<Alimento>) session.getAttribute("alimentos");
@@ -48,6 +49,7 @@
                                         out.print("-");
                                     }
                                 %></td>
+                                <td><%= alimento.getStock() %></td>
                             </tr>
                             <%
                         }
@@ -67,7 +69,7 @@
             
             <form action="sv_anadirAlCarrito" method="post">
                 <h4 style="margin-bottom: 0;">Selecciona un producto para agregarlo al carrito:</h4>
-                <select name="itemSeleccionado">
+                <select name="itemSeleccionado" required>
                     <option value="" disabled selected>Selecciona un producto</option>
                     <%
                         for (Alimento alimento : alimentos) {
